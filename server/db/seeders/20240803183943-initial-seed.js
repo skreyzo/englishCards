@@ -28,7 +28,7 @@ module.exports = {
       {},
     );
     await queryInterface.bulkInsert(
-      'Сards',
+      'Cards',
       [
         // Животные
         {
@@ -350,6 +350,88 @@ module.exports = {
           rusWord: 'Троллейбус',
           engWord: 'Trolleybus',
           categoryId: 4,
+          userId: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        // Одежда
+
+        {
+          rusWord: 'Рубашка',
+          engWord: 'Shirt',
+          categoryId: 5,
+          userId: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          rusWord: 'Джинсы',
+          engWord: 'Jeans',
+          categoryId: 5,
+          userId: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          rusWord: 'Платье',
+          engWord: 'Dress',
+          categoryId: 5,
+          userId: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          rusWord: 'Куртка',
+          engWord: 'Jacket',
+          categoryId: 5,
+          userId: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          rusWord: 'Шляпа',
+          engWord: 'Hat',
+          categoryId: 5,
+          userId: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          rusWord: 'Перчатки',
+          engWord: 'Gloves',
+          categoryId: 5,
+          userId: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          rusWord: 'Шарф',
+          engWord: 'Scarf',
+          categoryId: 5,
+          userId: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          rusWord: 'Кроссовки',
+          engWord: 'Sneakers',
+          categoryId: 5,
+          userId: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          rusWord: 'Носки',
+          engWord: 'Socks',
+          categoryId: 5,
+          userId: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          rusWord: 'Костюм',
+          engWord: 'Suit',
+          categoryId: 5,
           userId: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
