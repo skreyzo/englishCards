@@ -20,7 +20,7 @@ function App() {
           element: <MainPage user={user} />,
         },
         {
-          path: '/quiz/:id',
+          path: '/quiz/:catId',
           element: <QuizPage />,
         },
         {
