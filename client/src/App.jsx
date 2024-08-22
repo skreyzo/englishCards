@@ -6,9 +6,11 @@ import AccountLoginPage from './components/pages/AccountLoginPage';
 import AccountNewPage from './components/pages/AccountNewPage';
 import useUser from './hooks/useUser';
 import QuizPage from './components/pages/QuizPage';
+import useCategory from './hooks/useCategory';
 
 function App() {
   const { logoutHandler, signInHandler, signUpHandler, user } = useUser();
+  const {categories} = useCategory()
 
   const router = createBrowserRouter([
     {
@@ -17,7 +19,7 @@ function App() {
       children: [
         {
           path: '/',
-          element: <MainPage user={user} />,
+          element: <MainPage categories={categories} user={user} />,
         },
         {
           path: '/quiz/:catId',
