@@ -22,7 +22,7 @@ function App() {
           element: <MainPage categories={categories} user={user} />,
         },
         {
-          path: '/quiz/:id',
+          path: '/quiz/:catId',
           element: <QuizPage />,
         },
         {

@@ -9,20 +9,20 @@ import axiosInstance from '../api/axiosInstance';
 export default function QuizPage() {
   const [cards, setCards] = useState([]);
 
-  const { id } = useParams();
+  const { catId } = useParams();
 
   useEffect(() => {
-    axiosInstance(`/cat/${id}`)
+    axiosInstance(`/cat/${catId}`)
       .then((res) => setCards(res.data))
       .catch((err) => console.error(err));
-  }, []);
+  }, [catId]);
 
-  //   //! Функция удаления карточки из квиза по кнопке "изучено"
+  console.log(cards, '<==========');
 
-  const hideHandler = async (id) => {
+  const hideHandler = async (cardId, userId) => {
     try {
-      await axiosInstance.delete(`/quiz/${id}`);
-      setCards((prev) => prev.filter((cat) => cat.id !== id));
+      await axiosInstance.post('/progress', { cardId, userId });
+      setCards((prev) => prev.filter((card) => card.id !== cardId));
     } catch (err) {
       console.error(err);
     }
@@ -31,15 +31,15 @@ export default function QuizPage() {
   return (
     <Row>
       {cards.map((el) => (
-        <Col xs={12} sm={6} md={4} lg={3} className="mb-4 mt-4">
-  <QuizCard
-    engWord={el.engWord}
-    rusWord={el.rusWord}
-    id={el.id}
-    hideHandler={hideHandler}
-    key={el.id}
-  />
-</Col>
+        <Col xs={12} sm={6} md={4} lg={3} className="mb-4 mt-4" key={el.id}>
+          <QuizCard
+            engWord={el.engWord}
+            rusWord={el.rusWord}
+            id={el.id}
+            userId={el.userId} // Убедитесь, что userId передается корректно
+            hideHandler={hideHandler}
+          />
+        </Col>
       ))}
     </Row>
   );

@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 import { motion } from 'framer-motion';
 import '../../css/QuizCard.css';
 
-export default function QuizCard({ engWord, rusWord, hideHandler, id }) {
+export default function QuizCard({ engWord, rusWord, id, userId, hideHandler }) {
   const [isFlipped, setIsFlipped] = useState(false);
 
   function onChangeShow() {
@@ -26,14 +26,13 @@ export default function QuizCard({ engWord, rusWord, hideHandler, id }) {
                 <Card.Text style={{ textAlign: 'center' }}>{engWord}</Card.Text>
               </div>
             ) : (
-              <Card.Text style={{ transform: 'rotateY(180deg)', textAlign: 'center',                   color: 'red',
-              }}>{rusWord}</Card.Text>
+              <Card.Text style={{ transform: 'rotateY(180deg)', textAlign: 'center', color: 'red' }}>{rusWord}</Card.Text>
             )}
           </Card.Body>
         </Card>
       </motion.div>
       <div style={{ width: '100%' }}>
-        <Button variant="success" onClick={() => hideHandler(id)} style={{ width: '100%' }}>
+        <Button variant="success" onClick={() => hideHandler(id, userId)} style={{ width: '100%' }}>
           Изучено
         </Button>
       </div>
