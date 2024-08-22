@@ -6,8 +6,8 @@ import NavBar from './ui/NavBar';
 export default function Layout({ user, logoutHandler }) {
   return (
     <Loader showSpinner={user.status === 'fetching'}>
+      <NavBar user={user} logoutHandler={logoutHandler} />
       <Container>
-        <NavBar user={user} logoutHandler={logoutHandler} />
         <Outlet />
       </Container>
     </Loader>
