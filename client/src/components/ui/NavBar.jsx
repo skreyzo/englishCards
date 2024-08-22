@@ -1,45 +1,56 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import { Button, Container, Nav, Navbar, Dropdown } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
 export default function NavBar({ user, logoutHandler }) {
-
   return (
-    <Navbar bg="light" data-bs-theme="light">
+    <Navbar expand="lg" style={{ backgroundColor: "#0d6efd", color: "white" }} data-bs-theme="blue">
       <Container>
-        <Nav className="me-auto">
-          <NavLink to="/" className="nav-link">
-            Главная
-          </NavLink>
+        <Navbar.Brand href="/">
+          <img
+            src="/1500485760140135437 (1).png"
+            alt="Logo"
+            style={{ height: '40px', width: 'auto' }}
+          />
+        </Navbar.Brand>
 
-        </Nav>
-        <Nav>
-          {!user.data && (
-            <>
-              <NavLink to="/account/login" className="nav-link">
-              Войти
-              </NavLink>
-              <NavLink to="/account/new" className="nav-link">
-              Регистрация
-              </NavLink>
-              <span className="nav-link">|</span>
-            </>
-          )}
+        <span style={{ color: "white" }}>
+        {user.data?.name ? `Привет, ${user.data.name}!` : ""}
+         
+        </span>
 
-          <span className="nav-link">
-            {user.data ? user.data.name : 'Гость'}
-          </span>
-          {user.data && (
-            <span className="nav-link">
-              <Button onClick={logoutHandler} variant="outline-danger" size="sm">
-                Выйти
-              </Button>
-            </span>
-          )}
-        </Nav>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ms-auto">
+            {user.data ? (
+              <Dropdown align="end">
+                <Dropdown.Toggle variant="link" className="nav-link" style={{ color: "white" }}>
+                  Личный кабинет
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item href="#">Мои достижения</Dropdown.Item>
+                  <Dropdown.Item as="span" onClick={logoutHandler}>
+                    Выйти
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            ) : (
+              <>
+                <NavLink style={{ marginRight: '40px', color: "white" }} to="/account/login" className="nav-link">
+                  Войти
+                </NavLink>
+                <NavLink style={{ color: "white" }} to="/account/new" className="nav-link">
+                  Регистрация
+                </NavLink>
+                <span style={{ display: 'flex', alignItems: 'center', marginLeft: '870px', marginRight: '30px' }}>
+                  Гость
+                </span>
+              </>
+            )}
+          </Nav>
+        </Navbar.Collapse>
       </Container>
     </Navbar>
   );
