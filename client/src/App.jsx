@@ -5,6 +5,7 @@ import MainPage from './components/pages/MainPage';
 import AccountLoginPage from './components/pages/AccountLoginPage';
 import AccountNewPage from './components/pages/AccountNewPage';
 import useUser from './hooks/useUser';
+import QuizPage from './components/pages/QuizPage';
 
 function App() {
   const { logoutHandler, signInHandler, signUpHandler, user } = useUser();
@@ -12,11 +13,15 @@ function App() {
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Layout user={user} logoutHandler={logoutHandler}  />,
+      element: <Layout user={user} logoutHandler={logoutHandler} />,
       children: [
         {
           path: '/',
           element: <MainPage user={user} />,
+        },
+        {
+          path: '/quiz/:id',
+          element: <QuizPage />,
         },
         {
           element: <ProtectedRouter isAllowed={user.status !== 'logged'} />,
