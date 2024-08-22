@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
+
 export default function QuizCard({ engWord, rusWord, onHide, id }) {
   const [isFlipped, setIsFlipped] = useState(false);
 
@@ -26,6 +27,12 @@ export default function QuizCard({ engWord, rusWord, onHide, id }) {
         </Button>
       </Card.Body>
     </Card>
+
+
+
+
+
+
   );
 }
 
