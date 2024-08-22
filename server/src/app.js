@@ -5,6 +5,7 @@ const accountRouter = require('./routes/accountRouter');
 const tokensRouter = require('./routes/tokensRouter');
 const catRouter = require('./routes/catRouter');
 const quizRouter = require('./routes/quizRouter');
+const lkRouter = require('./routes/lkRouter')
 
 const app = express();
 
@@ -17,5 +18,7 @@ app.use('/api/account/', accountRouter);
 app.use('/api/tokens/', tokensRouter);
 app.use('/api/cat/', catRouter);
 app.use('/api/quiz/', quizRouter);
+app.use('/api/lk/', lkRouter);
 
 module.exports = app;
+
