@@ -1,16 +1,25 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios';
-import { Button, Row } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
+import CategoryCard from '../ui/CategoryCard';
 
-
-export default function MainPage() {
-
-
+export default function MainPage({ categories, user }) {
   return (
     <>
-    <Row className='mt-3'>
-    </Row>
-
-</>
-  )
+      <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        marginTop:40
+      }}>
+        <h1>Всем привет</h1>
+      </div>
+      <Row>
+        {categories.map((item) => (
+          <Col key={item.id} lg={3} className="d-flex g-5">
+            <CategoryCard item={item} user={user} />
+          </Col>
+        ))}
+      </Row>
+    </>
+  );
 }
