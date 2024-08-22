@@ -6,11 +6,16 @@ import AccountLoginPage from './components/pages/AccountLoginPage';
 import AccountNewPage from './components/pages/AccountNewPage';
 import useUser from './hooks/useUser';
 import QuizPage from './components/pages/QuizPage';
+import GuestPage from './components/pages/GuestPage';
 
 function App() {
   const { logoutHandler, signInHandler, signUpHandler, user } = useUser();
 
   const router = createBrowserRouter([
+    {
+      path: '/guest',
+      element: <GuestPage />,
+    },
     {
       path: '/',
       element: <Layout user={user} logoutHandler={logoutHandler} />,
@@ -21,7 +26,7 @@ function App() {
         },
         {
           path: '/quiz/:catId',
-          element: <QuizPage user={user}/>,
+          element: <QuizPage user={user} />,
         },
         {
           element: <ProtectedRouter isAllowed={user.status !== 'logged'} />,
