@@ -21,7 +21,7 @@ function App() {
         },
         {
           path: '/quiz/:catId',
-          element: <QuizPage />,
+          element: <QuizPage user={user}/>,
         },
         {
           element: <ProtectedRouter isAllowed={user.status !== 'logged'} />,

@@ -5,9 +5,8 @@ const accountRouter = require('./routes/accountRouter');
 const tokensRouter = require('./routes/tokensRouter');
 const catRouter = require('./routes/catRouter');
 const quizRouter = require('./routes/quizRouter');
-const lkRouter = require('./routes/lkRouter')
-const pregressRouter = require('./routes/progressRouter')
-
+const lkRouter = require('./routes/lkRouter');
+const pregressRouter = require('./routes/progressRouter');
 
 const app = express();
 
@@ -24,4 +23,3 @@ app.use('/api/lk/', lkRouter);
 app.use('/api/progress/', pregressRouter);
 
 module.exports = app;
-

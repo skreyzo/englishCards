@@ -6,18 +6,19 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axiosInstance from '../api/axiosInstance';
 
-export default function QuizPage() {
+export default function QuizPage({ user }) {
   const [cards, setCards] = useState([]);
 
   const { catId } = useParams();
 
   useEffect(() => {
-    axiosInstance(`/cat/${catId}`)
+    axiosInstance(`/cat/${catId}?userId=${user.data.id}`)
       .then((res) => setCards(res.data))
       .catch((err) => console.error(err));
-  }, [catId]);
+  }, [catId, user.data.id]);
 
-  console.log(cards, '<==========');
+
+
 
   const hideHandler = async (cardId, userId) => {
     try {
@@ -36,7 +37,7 @@ export default function QuizPage() {
             engWord={el.engWord}
             rusWord={el.rusWord}
             id={el.id}
-            userId={el.userId} // Убедитесь, что userId передается корректно
+            userId={user.data.id} // Убедитесь, что userId передается корректно
             hideHandler={hideHandler}
           />
         </Col>
