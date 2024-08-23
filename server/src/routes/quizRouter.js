@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { Card } = require('../../db/models');
-// const verifyAccessToken = require('../middlewares/verifyAccessToken');
+const verifyAccessToken = require('../middlewares/verifyAccessToken');
 
 const router = Router();
 
@@ -16,25 +16,18 @@ router
     }
   })
 
-  // .post(verifyAccessToken, async (req, res) => {
-  //   // создание карточки с добавлением автора 
-  //   try {
-  //     await Card.create({
-  //       ...req.body,
-  //       userId: res.locals.user.id,
-  //     });
-  //     res.sendStatus(200);
-  //   } catch (err) {
-  //     console.log(err);
-  //     res.status(500).send('Internal server error');
-  //   }
-  // });
-
-  .post(async (req, res) => {
-    // пост запрос создание
-    const { rusWord, engWord, categoryId, userId } = req.body;
-    const newCard = await Card.create({ rusWord, engWord, categoryId, userId });
-    res.json(newCard);
+  .post(verifyAccessToken, async (req, res) => {
+    // создание карточки с добавлением автора 
+    try {
+      await Card.create({
+        ...req.body,
+        userId: res.locals.user.id,
+      });
+      res.sendStatus(200);
+    } catch (err) {
+      console.log(err);
+      res.status(500).send('Internal server error');
+    }
   });
 
 router
@@ -64,5 +57,6 @@ router
       res.status(500).json({ message: 'Error updating task', error });
     }
   });
+
 
 module.exports = router;

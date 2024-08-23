@@ -1,12 +1,43 @@
 import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axiosInstance, { setAccessToken } from "../api/axiosInstance"
 
 function CategoryCard({ item, user }) {
   const navigate = useNavigate();
   const [progress, setProgress] = useState(0);
+
+  // const fetchProgress = async () => {
+  //   try {
+  //     // Запрос для получения прогресса из базы данных
+  //     const response = await axiosInstance.get(`/api/progress/${item.id}`, {
+  //       params: { userId: user.data.id }
+  //     });
+  //     const completedCards = response.data.completedCards;
+  //     const totalCards = item.totalCards;
+
+  //     const calculatedProgress = (completedCards / totalCards) * 100;
+  //     setProgress(calculatedProgress);
+  //   } catch (error) {
+  //     console.error('Ошибка получения прогресса:', error);
+  //   }
+  // };
+
+  const [card,setCards] = useState([])
+  useEffect(() => {
+    axiosInstance.get(`/cat/${item.id}`).then(res => setCards(res.data));
+  }, []);
+
+console.log(card)
+
+const [userCard, setUserCards] = useState([])
+
+useEffect(() => {
+  axiosInstance.get(`/cat/${item.id}/allCards`).then(res => setUserCards(res.data))
+}, [])
+
+console.log(userCard)
 
 
   return (

@@ -7,10 +7,11 @@ import AccountNewPage from './components/pages/AccountNewPage';
 import useUser from './hooks/useUser';
 import QuizPage from './components/pages/QuizPage';
 import useCategory from './hooks/useCategory';
+import ProfilePage from './components/pages/ProfilePage';
 
 function App() {
   const { logoutHandler, signInHandler, signUpHandler, user } = useUser();
-  const {categories} = useCategory()
+  const { categories } = useCategory();
 
   const router = createBrowserRouter([
     {
@@ -22,19 +23,24 @@ function App() {
           element: <MainPage categories={categories} user={user} />,
         },
         {
-          path: '/quiz/:catId',
-          element: <QuizPage />,
+          path: '/account/new',
+          element: <AccountNewPage signUpHandler={signUpHandler} />,
         },
         {
-          element: <ProtectedRouter isAllowed={user.status !== 'logged'} />,
+          path: '/account/login',
+          element: <AccountLoginPage signInHandler={signInHandler} />,
+        },
+
+        {
+          element: <ProtectedRouter isAllowed={user.status === 'logged'} />,
           children: [
             {
-              path: '/account/new',
-              element: <AccountNewPage signUpHandler={signUpHandler} />,
+              path: '/profile',
+              element: <ProfilePage categories={categories} user={user} />,
             },
             {
-              path: '/account/login',
-              element: <AccountLoginPage signInHandler={signInHandler} />,
+              path: '/quiz/:catId',
+              element: <QuizPage user={user} />,
             },
           ],
         },
